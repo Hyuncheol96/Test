@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Board">
+    <insert id="save" parameterType="board">
+        insert into boa (title, writer, con) values (#{title}, #{writer}, #{con})
+    </insert>
+
+    <select id="findAll" resultType="board">
+        select * from boa
+    </select>
+
+    <update id="hitsAdd" parameterType="Long">
+        update boa set hits=hits+1 where id=#{id}
+    </update>
+
+    <select id="findById" parameterType="Long" resultType="board">
+        select * from boa where id=#{id}
+    </select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

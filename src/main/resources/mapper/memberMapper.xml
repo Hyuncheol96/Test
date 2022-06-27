@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Member">
+    <insert id="save" parameterType="member">
+        insert into mem(memberId, memberPw) values (#{memberId}, #{memberPw})
+    </insert>
+
+    <select id="login" parameterType="member" resultType="member">
+        select * from mem where memberId=#{memberId} and memberPw=#{memberPw}
+    </select>
+
+    <select id="findAll" resultType="member">
+        select * from mem
+    </select>
+
+    <delete id="delete" parameterType="Long">
+        delete from mem where id=#{id}
+    </delete>
+
+    <select id="findById" parameterType="Long" resultType="member">
+        select * from mem where id=#{id}
+    </select>
+
+    <update id="update" parameterType="member">
+        update mem set memberPw=#{memberPw} where id=#{id}
+    </update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
