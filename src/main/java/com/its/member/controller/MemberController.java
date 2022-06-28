@@ -17,22 +17,26 @@ public class MemberController {
     @Autowired
     private MemberService ms;
 
+    // 회원가입 화면 요청
     @GetMapping("/save-form")
     public String saveForm() {
         return "member/save";
     }
 
+    // 회원가입 처리
     @PostMapping("/save")
     public String save(@ModelAttribute MemberDTO memberDTO) {
         ms.save(memberDTO);
         return "member/login";
     }
 
+    // 로그인 화면 요청
     @GetMapping("login-form")
     public String loginForm() {
         return "member/login";
     }
 
+    // 로그인 처리
     @PostMapping("/login")
     public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
         MemberDTO member = ms.login(memberDTO); // 성공 또는 실패
@@ -47,6 +51,7 @@ public class MemberController {
 
     }
 
+    // 회원목록 조회
     @GetMapping("/findAll")
     public String findAll(Model model) {
         List<MemberDTO> memberDTOList = ms.findAll();
@@ -54,12 +59,14 @@ public class MemberController {
         return "member/list";
     }
 
+    // 회원 삭제
     @GetMapping("/delete")
     public String delete(@RequestParam Long id) {
         ms.delete(id);
         return "redirect:/member/findAll";
     }
 
+    // 회원 수정 화면 요청
     @GetMapping("/update-form")
     public String updateForm(@RequestParam Long id, Model model) {
         MemberDTO memberDTO = ms.findById(id);
@@ -67,6 +74,7 @@ public class MemberController {
         return "member/update";
     }
 
+    // 회원 수정처리
     @PostMapping("/update")
     public String update(@ModelAttribute MemberDTO memberDTO) {
 //        Long id = (Long) session.getAttribute("id");
@@ -75,6 +83,7 @@ public class MemberController {
         return "redirect:/member/detail?id=" + memberDTO.getId();
     }
 
+    // 회원 상세조회
     @GetMapping("/detail")
     public String findById(@RequestParam ("id") Long id, Model model) {
         MemberDTO memberDTO = ms.findById(id);

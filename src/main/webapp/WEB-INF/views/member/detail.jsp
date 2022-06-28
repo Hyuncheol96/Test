@@ -13,7 +13,7 @@
 <body>
 <a href="/board/save-form">글등록</a>
 <a href="/board/findAll">글목록</a>
-a
+
     <h2>회원정보</h2>
     <table>
         <tr>
